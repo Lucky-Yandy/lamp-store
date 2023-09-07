@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/lamp-store/static/css/main.666dbd63.css",
-    "main.js": "/lamp-store/static/js/main.24176d63.js",
+    "main.js": "/lamp-store/static/js/main.2dc4374d.js",
     "index.html": "/lamp-store/index.html",
     "main.666dbd63.css.map": "/lamp-store/static/css/main.666dbd63.css.map",
-    "main.24176d63.js.map": "/lamp-store/static/js/main.24176d63.js.map"
+    "main.2dc4374d.js.map": "/lamp-store/static/js/main.2dc4374d.js.map"
   },
   "entrypoints": [
     "static/css/main.666dbd63.css",
-    "static/js/main.24176d63.js"
+    "static/js/main.2dc4374d.js"
   ]
 }
