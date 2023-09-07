@@ -25,21 +25,32 @@ function Store(props){
 		  <span className="ms-2 text-muted">{formatCurrency(item.price)}</span>
 		</Card.Title>
 		<div className="mt-auto">
-	 { (props.cart.find(cartitem => cartitem.id === item.id)?.quantity ||0) === 0 ? (
-	  <Button className="w-100" style={{backgroundColor: "Thistle",border: "none"}} onClick={() => props.increaseGotClicked(item.id)}>Add To Cart
+ { (props.cart.find(cartitem => cartitem.id === item.id)?.quantity ||0) === 0 ? (
+	  <Button className="w-100" 
+	          style={{backgroundColor: "SandyBrown",border: "none"}} 
+	         onClick={() => props.increaseGotClicked(item.id)}>Add To Cart
 	  </Button>):
-	  (<div className="d-flex align-items-center flex-row  justify-content-between" style={{gap:".5rem"}}> 
+	  (<div className="d-flex align-items-center flex-row  justify-content-between" 
+	   style={{gap:".5rem"}}> 
 	    <div className="d-flex align-items-center"> 
-            <Button  onClick={() =>props.decreaseCartQuantity(item.id)}style={{margin: '0 10px',backgroundColor: "Thistle",  border: "none"}}>-</Button>
-	   <div className="fs-10">{ props.cart.find(cartitem => cartitem.id === item.id)?.quantity ||0}</div>
-           <Button  onClick={() =>props.increaseGotClicked(item.id)}style={{margin: '0 10px',backgroundColor: "Thistle",border: "none"}}>+</Button>
+            <Button  onClick={() =>props.decreaseCartQuantity(item.id)}
+                     style={{margin: '0 10px',backgroundColor: "Lavender ", border: "none",color:"orange"}}>
+                     -
+            </Button>
+	   <div className="fs-10">
+	      { props.cart.find(cartitem => cartitem.id === item.id)?.quantity ||0}
+	   </div>
+           <Button  onClick={() =>props.increaseGotClicked(item.id)}
+                    style={{margin: '0 10px',backgroundColor: "Lavender ",border: "none",color:"orange"}}
+            >+</Button>
 	   </div>
           <div>  
-          <Button style={{backgroundColor: "Thistle",border: "none"}}  onClick={() =>props.removeItem(item.id)}>Remove</Button>
+          <Button style={{backgroundColor: "SandyBrown",border: "none"}}  
+                  onClick={() =>props.removeItem(item.id)}>Remove</Button>
           </div>
 	  </div>)
 		 
-		 }
+ }
 		
 		</div>
 	      </Card.Body>

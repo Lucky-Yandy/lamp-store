@@ -32,4 +32,28 @@
         justify-content: center;
         align-items: center;
     }
+.btn-hover-orange {
+  transition: background-color 0.3s ease; /* Add smooth transition effect */
+}
 
+.btn-hover-orange:hover {
+  background-color: orange; /* Change the background color on hover */
+}
+
+
+
+@media (max-width: 768px) {
+  .resbonsive {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+
+@media (max-width: 590px) {
+  .inOneline {
+    display: flex;
+    flex-direction:row;
+    align-items: center;
+  }
+}

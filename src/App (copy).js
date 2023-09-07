@@ -15,54 +15,69 @@ import Navbar from './components/Navbar/Navbar.js';
 import storeItems from './data/items.json';
 
 function App() {  
-   const startingCartString = localStorage.getItem('cart');
-   let defaultCart = [];
-   if (startingCartString) {
-       defaultCart = JSON.parse(startingCartString)
-       console.log(defaultCart);
-   }
-
-   const[cart,setCart]=useState(defaultCart);
-   const[isOpen, setIsOpen]=useState(false);
+   let storedItemQuantity = localStorage.getItem('itemQuantity');
+   let storedCartQuantity = localStorage.getItem('cartQuantity');
    
+   const[cart,setCart]=useState([]);
+ //  const[itemQuantity,setItemQuantity]=useState(storedItemQuantity); 
+ //  const[cartQuantity,setCartQuantity]=useState(storedCartQuantity);
+   const[isOpen, setIsOpen]=useState(false);
+  
+   
+   
+   
+    
     
    function addToCard (id){ 
     
-     const newCart = cart.slice();
-     const existingItem = newCart.find(item => item.id === id); 
-     if (!existingItem) { // No existing item
-            newCart.push({
-                id: id,
-                quantity: 1,
-            });
-        } else {
-            existingItem.quantity = existingItem.quantity + 1;
-        }
-        setCart(newCart);
-        localStorage.setItem('cart', JSON.stringify(newCart));
+    setCart(newCart => {
+      if(newCart.find(item =>item.id ===id)?.quantity==null){
+         return [...newCart,{id,quantity:1}]        
+      }else{
+           return newCart.map(item =>{
+              if (item.id ===id){
+                return{...item, quantity:item.quantity+1}
+                   }else{
+                      return item
+       }
+      
+        })
+      }
+      
+     });
+     
+
  }
     
     function decreaseCartQuantity (id){ 
-       
-	const newCart = cart.slice();
-	const existingItem = newCart.find(item => item.id === id);
-
-	if (existingItem) {
-            if (existingItem.quantity === 1) {
-	        newCart.splice(newCart.indexOf(existingItem), 1); 
-	    } else {
-		existingItem.quantity -= 1; 
-	     }
-	    setCart(newCart); 
-	    localStorage.setItem('cart', JSON.stringify(newCart)); 
-	    }
-	}
+        setCart(newCart => {
+         if(newCart.find(item =>item.id ===id)?.quantity===1){
+          return newCart.filter(item =>item.id !==id)         
+         }else{
+		 return newCart.map(item =>{
+		   if (item.id ===id){
+		     return{...item, quantity:item.quantity-1}
+		   }else{
+		     return item
+		   }
+         
+         })
+         }
+        
+        });
+         console.log(cart);
     
+   }
+   
+ 
+  
    function removeItem(id){
      setCart(newCart =>{
-        return newCart.filter(cartItem => cartItem.id !==id)
-     })  
-   }
+              return newCart.filter(cartItem => cartItem.id !==id)
+     })
+     
+  }
+  
    
    const closeCart= () => setIsOpen(false);
    const openCart= () => setIsOpen(true);
