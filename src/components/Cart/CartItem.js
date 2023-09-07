@@ -29,7 +29,7 @@ function CartItem (props) {
           </div>
         </div>
        
-        <button  style={{backgroundColor: "Thistle"}} size="sm" onClick={() => props.removeItem(item.id)}>
+        <button  style={{backgroundColor: "SandyBrown"}} size="sm" onClick={() => props.removeItem(item.id)}>
          &times;
         </button>
       </Stack>

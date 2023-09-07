@@ -31,7 +31,7 @@ function  Cart(props) {
           
           </Stack>
            <Stack>
-            <Button variant="outline-light" style={{backgroundColor: "Thistle", marginTop: "20px"}} 
+            <Button variant="outline-light" style={{backgroundColor: "SandyBrown", marginTop: "20px"}} 
             size="sm">
           checkout
         </Button>
