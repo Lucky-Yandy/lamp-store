@@ -29,24 +29,24 @@ const DropdownFilter = (props) => {
            Filter
       </Dropdown.Toggle>
       <Dropdown.Menu >
-        <Dropdown>
+        <Dropdown style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
           <label >
 	    <input
 		 type="radio"
 		  name="drowdown"
 		  checked={filterChecked.lowToHigh}
 		  onClick={handleLowToHighChange}
-		  /> lowToHigh
+		  /> price low to high
           </label >
        </Dropdown>
-        <Dropdown>
+        <Dropdown style={{ display: "flex", justifyContent: "center",alignItems: "center",padding: "10px"}}>
           <label >
 	    <input
 		    type="radio"
 		    name="drowdown"
 		    checked={filterChecked.hightToLow}
 		    onClick={ handleHightToLowChange}
-		  />hightToLow
+		  />price high to low
            </label>
          </Dropdown>
       </Dropdown.Menu>
