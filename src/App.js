@@ -1,12 +1,5 @@
 import React, { useState } from 'react';
-//import ReactDOM from 'react-dom';
-//import {Row, Col} from 'react-bootstrap';
-//import {
- // BrowserRouter as Router,
-//  Routes,
-//  Route,
-//  Link,
-//} from "react-router-dom";
+import ReactDOM from 'react-dom';
 import {Container} from 'react-bootstrap';
 import './App.css';
 import Cart from './components/Cart/Cart.js';
@@ -24,10 +17,10 @@ function App() {
 
    const[cart,setCart]=useState(defaultCart);
    const[isOpen, setIsOpen]=useState(false);
-   
-    
+   const[searchBox,setSearchBox]=useState('');
+   const[ordering,setOrdering]=useState("low to high");
+  
    function addToCard (id){ 
-    
      const newCart = cart.slice();
      const existingItem = newCart.find(item => item.id === id); 
      if (!existingItem) { // No existing item
@@ -40,13 +33,11 @@ function App() {
         }
         setCart(newCart);
         localStorage.setItem('cart', JSON.stringify(newCart));
- }
+    }
     
     function decreaseCartQuantity (id){ 
-       
 	const newCart = cart.slice();
 	const existingItem = newCart.find(item => item.id === id);
-
 	if (existingItem) {
             if (existingItem.quantity === 1) {
 	        newCart.splice(newCart.indexOf(existingItem), 1); 
@@ -66,28 +57,43 @@ function App() {
    
    const closeCart= () => setIsOpen(false);
    const openCart= () => setIsOpen(true);
+    
+    /*working on the searchBar*/
+   function searchValue(ev){
+           setSearchBox(ev.target.value);
+           console.log("searbar is working",searchBox)
+   }
    
+   /*working on the filter*/
+   function onDropDown(value){
+      setOrdering(value);
+      console.log("hi is this working",value);
+   }
+   if (ordering === "low"){
+      storeItems.sort((a, b) => a.price - b.price);
    
+   }else{
+   
+      storeItems.sort((a, b) => b.price - a.price);
+   }
    
    return (
    
     <div>
-      <Navbar  
-               storeItems={storeItems}
+      <Navbar   storeItems={storeItems}
                 closeCart={closeCart}
                 openCart={openCart}
                 cart={cart}
-                
-               />
+                searchValue = {searchValue} //fuction 
+                onDropDown ={onDropDown}  
+       />
       <Container className="mb-4">
-       
-          <Store 
-                  storeItems={storeItems}
-                  cart={cart}
-                  
-                  increaseGotClicked={addToCard}
-                  decreaseCartQuantity={decreaseCartQuantity} 
-                  removeItem={removeItem} />
+          <Store storeItems={storeItems}
+                 cart={cart}
+                 searchBox={searchBox}
+                 increaseGotClicked={addToCard}
+                 decreaseCartQuantity={decreaseCartQuantity} 
+                 removeItem={removeItem} />
            <Cart 
                   storeItems={storeItems}
                   

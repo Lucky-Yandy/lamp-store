@@ -32,28 +32,45 @@
         justify-content: center;
         align-items: center;
     }
+    
+ .outline-orange {
+  border: 2px solid orange;
+  color: orange;
+  background-color: transparent;
+}
 .btn-hover-orange {
-  transition: background-color 0.3s ease; /* Add smooth transition effect */
+  transition: background-color 0.3s ease; 
+  
 }
 
 .btn-hover-orange:hover {
-  background-color: orange; /* Change the background color on hover */
+  background-color: orange; 
 }
 
 
 
+.myDivToSearchAndFilter {
+
+  display: flex;
+  align-items: center;
+  width: auto;
+  justify-content: space-between;
+  
+}
+
+
 @media (max-width: 768px) {
-  .resbonsive {
-    display: flex;
-    flex-direction: column;
+ 
+  .myDivToSearchAndFilter {
+    display: none;
   }
+  
 }
 
 
 @media (max-width: 590px) {
-  .inOneline {
-    display: flex;
-    flex-direction:row;
-    align-items: center;
+  
+  .myDivToSearchAndFilter {
+     display: none;
   }
 }

@@ -1,35 +1,63 @@
 import React, { useState } from 'react';
 import { Dropdown } from 'react-bootstrap';
 
-const DropdownFilter = () => {
-  const [selectedItems, setSelectedItems] = useState([]); // To keep track of selected items
-
-  // Define a list of options for the filter
-  const filterOptions = [
-  
-    { id: 2, label: 'price hight to low' },
-    { id: 3, label: 'price low to hight' },
-    { id: 1, label: 'stars *****' },
-  
-    // Add more options as needed
-  ];
-
-  // Function to handle checkbox changes
-  const handleCheckboxChange = (option) => {
-    if (selectedItems.includes(option.id)) {
-      setSelectedItems(selectedItems.filter((item) => item !== option.id));
-    } else {
-      setSelectedItems([...selectedItems, option.id]);
+const DropdownFilter = (props) => {
+   const[filterChecked,setFilterChecked]=useState({
+     lowToHigh:false,
+     hightToLow:true,
+   });
+   
+   function handleLowToHighChange(ev){
+	      setFilterChecked({
+	          lowToHigh: true,
+	          hightToLow:false,
+	      });
+	      props.onChanged("low");
     }
-  };
-
-  return (
-    <Dropdown>
-      <Dropdown.Toggle variant="gray" id="dropdown-filter"  style={{ borderColor: 'orange', borderRadius: '50px', width:"150px"}} >
-        Filter
+   function handleHightToLowChange(ev){
+	      setFilterChecked({
+	       hightToLow: true,
+	       lowToHigh:false,
+	      });
+	      props.onChanged("high");
+     }
+   return (
+     <Dropdown>
+      <Dropdown.Toggle variant="gray" id="dropdown-filter"  
+                       style={{ borderColor: 'orange', borderRadius: '50px', 
+                       width:"150px", marginLeft:"30px"}} >
+           Filter
       </Dropdown.Toggle>
       <Dropdown.Menu >
-        {filterOptions.map((option) => (
+        <Dropdown>
+          <label >
+	    <input
+		 type="radio"
+		  name="drowdown"
+		  checked={filterChecked.lowToHigh}
+		  onClick={handleLowToHighChange}
+		  /> lowToHigh
+          </label >
+       </Dropdown>
+        <Dropdown>
+          <label >
+	    <input
+		    type="radio"
+		    name="drowdown"
+		    checked={filterChecked.hightToLow}
+		    onClick={ handleHightToLowChange}
+		  />hightToLow
+           </label>
+         </Dropdown>
+      </Dropdown.Menu>
+    </Dropdown>
+  );
+};
+
+export default DropdownFilter;
+
+
+/*  {filterOptions.map((option) => (
           <Dropdown.Item key={option.id}>
             <input
               type="checkbox"
@@ -39,11 +67,4 @@ const DropdownFilter = () => {
             />
             <label htmlFor={`option-${option.id}`}>{option.label}</label>
           </Dropdown.Item>
-        ))}
-      </Dropdown.Menu>
-    </Dropdown>
-  );
-};
-
-export default DropdownFilter;
-
+        ))}*/

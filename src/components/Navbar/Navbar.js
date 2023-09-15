@@ -1,14 +1,10 @@
 import React from 'react';
-import {Container, Button,Nav,Navbar as NavbarBs,FormControl} from 'react-bootstrap';
-import {NavLink}from 'react-router-dom';
+import {Container, Button,Navbar as NavbarBs,FormControl} from 'react-bootstrap';
 import { FaShoppingCart } from 'react-icons/fa';
 import myStoreImage from '../../images/mystoreimage.png';
-import Searchbar from '../SearchBar/SearchBar.js';
 import './Navbar.css';
 import DropdownFilter from '../DropDownFilter/DropDownFilter.js';
-function Navbar(props){
-   
-
+function Navbar(props){  
     const totalQuantity = props.storeItems.reduce((total, item) => {
         const quantity =  props.cart.find(cartitem => cartitem.id === item.id)?.quantity ||0;
         return total + quantity;
@@ -16,7 +12,7 @@ function Navbar(props){
     
     const{openCart}=props
   
-   return(
+    return(
 	
 	<NavbarBs sticky="top"  className="shadow-sm mb-3" style={{height:"auto",backgroundColor: "White", }}>
 	   <Container className="resbonsive"> 
@@ -26,22 +22,26 @@ function Navbar(props){
                   <span style={{marginLeft:"10px"}}>Illuminati Lamps </span>
                   </h1>
                </NavbarBs.Brand >  
-               
-              <NavbarBs.Text className="search">
-	         <FormControl style={{width: '100%', maxWidth: '500px', borderColor: 'orange' }} placeholder="search a product" className="m-auto" />
+             <div className="myDivToSearchAndFilter" >  
+              <NavbarBs.Text  >
+	         <FormControl style={{width: '100%', borderColor: 'orange'}}
+	           placeholder="search a product" 
+	           className="m-auto" 
+	           onChange={(ev) => props.searchValue(ev)}/>
 	      </NavbarBs.Text>
-	      
 	       
-                    <NavbarBs.Brand>
-                          <DropdownFilter />
-                    </NavbarBs.Brand>
-              
+               <NavbarBs.Brand>
+                       <DropdownFilter  onChanged ={props.onDropDown}  />
+              </NavbarBs.Brand>
+              </div>
 	       <Button  onClick={openCart}
 	            style={{width:"3rem", height:"3rem",position:"relative",borderColor: 'orange' }}
 	            variant="outline-dark"
 	            className="rounded-circle btn-hover-orange">
 	          <FaShoppingCart/>
-	          <div className="rounded-circle bg-danger d-flex justify-content-center align-items-center " style={{color:"white", width:"1.5rem", height:"1.5rem", position:"absolute", bottom:"0",right:"0",transform:"translate(25%, 25%)",}}>{totalQuantity}</div>
+	          <div className="rounded-circle bg-danger d-flex justify-content-center align-items-center "
+	           style={{color:"white", width:"1.5rem", height:"1.5rem", position:"absolute",
+	            bottom:"0",right:"0",transform:"translate(25%, 25%)",}}>{totalQuantity}</div>
 	         </Button>
 	      
 	      
