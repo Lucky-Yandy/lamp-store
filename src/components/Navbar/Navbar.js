@@ -15,12 +15,12 @@ function Navbar(props){
     return(
 	
 	<NavbarBs sticky="top"  className="shadow-sm mb-3" style={{height:"auto",backgroundColor: "White", }}>
-	   <Container className="resbonsive"> 
+	   <Container > 
                <NavbarBs.Brand >
-                 <h1 style={{ display: "flex", alignItems: "center" }}> 
-                  <img src={myStoreImage} alt="my-store-image" width="50" height="50" />
-                  <span style={{marginLeft:"10px"}}>Illuminati Lamps </span>
-                  </h1>
+                 <div style={{ display: "flex", alignItems: "center" }}> 
+                  <img src={myStoreImage} alt="my-store-image" className="storeImage" />
+                  <span className="storeNameSize" style={{marginLeft:"10px"}}> Illuminati Lamps </span>
+                  </div>
                </NavbarBs.Brand >  
              <div className="myDivToSearchAndFilter" >  
               <NavbarBs.Text  >
@@ -35,12 +35,12 @@ function Navbar(props){
               </NavbarBs.Brand>
               </div>
 	       <Button  onClick={openCart}
-	            style={{width:"3rem", height:"3rem",position:"relative",borderColor: 'orange' }}
+	            style={{width:"2.5rem", height:"2.5rem",position:"relative",borderColor: 'orange' }}
 	            variant="outline-dark"
 	            className="rounded-circle btn-hover-orange">
 	          <FaShoppingCart/>
 	          <div className="rounded-circle bg-danger d-flex justify-content-center align-items-center "
-	           style={{color:"white", width:"1.5rem", height:"1.5rem", position:"absolute",
+	           style={{color:"white", width:"1.2rem", height:"1.2rem", position:"absolute",
 	            bottom:"0",right:"0",transform:"translate(25%, 25%)",}}>{totalQuantity}</div>
 	         </Button>
 	      
