@@ -2,22 +2,30 @@ import React from 'react';
 import {Row, Col} from 'react-bootstrap';
 import {Card, Button} from 'react-bootstrap';
 import{formatCurrency} from '../../utilities/formatCurrency';
-  
-//import SingleItem from '../SingleItem/SingleItem.js';
+    
+
 function Store(props){
- 
+  const searchResults = props.storeItems.filter((val) => {
+        if (props.searchBox.trim() === "") {
+	    // If the search box is empty or contains only spaces, keep all items.
+	    return true;
+	} else if (val.name.toLowerCase().includes(props.searchBox.toLowerCase())) {
+	    // Return true only if the item's name matches the search criteria.
+	   return true;
+        } else {
+	    // Return false for items that don't match the search criteria.
+	  return false;
+	  }
+	      }); 
+  if (searchResults.length < 1) {
+     return (<div  style={{textAlign: 'center', marginTop: "50px",fontSize:"50px"}} >No item found</div>);
+     
+  }
   return(
      <div>  
        <Row md={2} xs={1} lg={3} className="g-3">
-        {props.storeItems
-	   .filter((val) => {
-	      if (props.searchBox === " ") {
-		return val;
-	      }else if(val.name.toLowerCase().includes(props.searchBox.toLowerCase())){
-	       return val;
-	      }
-           })
-           .map((item)=>(
+       
+        { searchResults.map((item)=>(
 		  <Col key={item.id}> 
 		    <div>
 		   <Card className="h-100" >
@@ -33,14 +41,14 @@ function Store(props){
 		<div className="mt-auto">
                   { (props.cart.find(cartitem => cartitem.id === item.id)?.quantity ||0) === 0 ? (
 			  <Button className="w-100" 
-				  style={{backgroundColor: "SandyBrown",border: "none"}} 
+				  style={{backgroundColor:"SandyBrown", border: "none"}} 
 				  onClick={() => props.increaseGotClicked(item.id)}>Add To Cart
 			  </Button>):
 		    (<div className="d-flex align-items-center flex-row  justify-content-between" 
 			   style={{gap:".5rem"}}> 
 			    <div className="d-flex align-items-center"> 
 			    <Button  onClick={() =>props.decreaseCartQuantity(item.id)}
-				     style={{margin:'0 10px',backgroundColor: "Lavender ",
+				     style={{margin:'0 10px',backgroundColor: "Lavender",
 				     border: "none",color:"orange"}}>
 				     -
 			    </Button>
@@ -48,17 +56,18 @@ function Store(props){
 			      { props.cart.find(cartitem => cartitem.id === item.id)?.quantity ||0}
 			   </div>
 			   <Button  onClick={() =>props.increaseGotClicked(item.id)}
-				    style={{margin: '0 10px',backgroundColor: "Lavender ",
+				    style={{margin: '0 10px',backgroundColor: "Lavender",
 				    border: "none",color:"orange"}}
 			    >+</Button>
 			   </div>
 			  <div>  
-			  <Button style={{backgroundColor: "SandyBrown",border: "none"}}  
+			  <Button style={{backgroundColor:"SandyBrown",border: "none"}}  
 				  onClick={() =>props.removeItem(item.id)}>Remove</Button>
 			  </div>
 			  </div>)
 
 	               }
+	              
 		
 		</div>
 	      </Card.Body>
@@ -67,12 +76,12 @@ function Store(props){
           </Col>))
         
         }
-       
+        
        
        </Row>
    </div>
    );
-
+  
 
 
 }

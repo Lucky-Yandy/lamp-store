@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
 import {Container} from 'react-bootstrap';
 import './App.css';
@@ -12,7 +12,7 @@ function App() {
    let defaultCart = [];
    if (startingCartString) {
        defaultCart = JSON.parse(startingCartString)
-       console.log(defaultCart);
+       //console.log(defaultCart);
    }
 
    const[cart,setCart]=useState(defaultCart);
@@ -33,6 +33,7 @@ function App() {
         }
         setCart(newCart);
         localStorage.setItem('cart', JSON.stringify(newCart));
+        console.log("this is newcart",newCart)
     }
     
     function decreaseCartQuantity (id){ 
@@ -47,13 +48,17 @@ function App() {
 	    setCart(newCart); 
 	    localStorage.setItem('cart', JSON.stringify(newCart)); 
 	    }
+	     console.log("after delete this is newcart",newCart);
 	}
     
    function removeItem(id){
      setCart(newCart =>{
+       
         return newCart.filter(cartItem => cartItem.id !==id)
-     })  
+     }) 
+    
    }
+   
    
    const closeCart= () => setIsOpen(false);
    const openCart= () => setIsOpen(true);

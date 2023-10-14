@@ -9,7 +9,7 @@ function  Cart(props) {
   const{closeCart}= props
   return (
    <div>
-      <Offcanvas  show={props.isOpen} onHide={closeCart} placement="end" >
+      <Offcanvas  show={props.isOpen} onHide={closeCart} placement="end"style={{ width: "30%" }} >
          <Offcanvas.Header closeButton>
              <Offcanvas.Title>Cart</Offcanvas.Title>
          </Offcanvas.Header>
@@ -21,6 +21,7 @@ function  Cart(props) {
                                               cart={props.cart}
                                               removeItem={props.removeItem} />
           ))}
+         {props.cart.length < 1 ? <p style={{textAlign: 'center', marginTop: "50px",fontSize:"20px"}}>No items added to the cart</p> : null}
           <div className="ms-auto  fw-bold fs-5">
            total{" "}
            {formatCurrency(props.cart.reduce((total, cartItem) => {
@@ -31,8 +32,9 @@ function  Cart(props) {
           
           </Stack>
            <Stack>
-            <Button variant="outline-light" style={{backgroundColor: "SandyBrown", marginTop: "20px"}} 
-            size="sm">
+            <Button variant="outline-light" 
+                    style={{backgroundColor: "SandyBrown", marginTop: "20px"}} 
+                    size="sm">
           checkout
         </Button>
             </Stack>

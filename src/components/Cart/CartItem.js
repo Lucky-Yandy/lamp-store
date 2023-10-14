@@ -14,7 +14,7 @@ function CartItem (props) {
  return (
     <div>
       <Stack direction="horizontal" gap={2} className="d-flex align-items-center">
-        <img src={item.image} style={{ width: "150px", height: "75px", objectFit: "cover" }} />
+        <img src={item.image} style={{ width: "150px", height: "75px", objectFit: "cover" }} alt="itemimage" />
         <div className="me-auto">
           <div>
             {item.name}{" "}
@@ -25,11 +25,11 @@ function CartItem (props) {
             )}
           </div>
           <div className="text-muted" style={{ fontSize: ".65rem" }}>
-            {formatCurrency(item.price*(props.cart.find(cartitem => cartitem.id === item.id)?.quantity ||0))}
+            {formatCurrency(item.price  *(props.cart.find(cartitem => cartitem.id === item.id)?.quantity ||0))}
           </div>
         </div>
        
-        <button  style={{backgroundColor: "SandyBrown"}} size="sm" onClick={() => props.removeItem(item.id)}>
+        <button  style={{backgroundColor: "SandyBrown", borderRadius: "20%" ,width: "50px", height: "40px"  }} size="sm" onClick={() => props.removeItem(item.id)}>
          &times;
         </button>
       </Stack>
