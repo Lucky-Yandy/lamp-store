@@ -74,3 +74,26 @@
      display: none;
   }
 }
+
+
+@media (max-width: 987px) {
+  
+  .myDivToSearchAndFilter {
+     display: none;
+  }
+}
+
+@media (max-width: 408px) {
+  
+  .myDivToSearchAndFilter {
+     display: none;
+  }
+  
+  
+}
+@media (max-width: 390px) {
+  .responsive-image {
+    max-width: 50px; /* Adjust the size as needed */
+  }
+}
+

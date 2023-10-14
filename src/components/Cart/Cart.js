@@ -9,7 +9,7 @@ function  Cart(props) {
   const{closeCart}= props
   return (
    <div>
-      <Offcanvas  show={props.isOpen} onHide={closeCart} placement="end"style={{ width: "30%" }} >
+      <Offcanvas  show={props.isOpen} onHide={closeCart} placement="end" >
          <Offcanvas.Header closeButton>
              <Offcanvas.Title>Cart</Offcanvas.Title>
          </Offcanvas.Header>
